@@ -50,9 +50,3 @@ class Loan:
         while npf.nper(self.rate, self.pmt+extra_pmt, -self.loan_amount)/12 > years_to_payoff:
             extra_pmt+=1
         return extra_pmt, self.pmt.round(2)+extra_pmt
-
-loan = Loan(5.88, 20, 360000)
-print(loan.table)
-#loan.plot_balances()
-#print(loan.retire_debt(10))
-loan.summary()
