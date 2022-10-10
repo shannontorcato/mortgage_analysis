@@ -13,7 +13,8 @@ def display_menu():
     5. Plot Balances
     6. Show size of payment to payoff in specific time
     7. Show effect of adding amount to each payment
-    8. Exit
+    8. Change parameter
+    9. Exit
     """)
 
 def pmt(loan):
@@ -38,6 +39,14 @@ def pay_earlier(loan):
     new_term = loan.pay_early(amt)
     print(f"Loan paid of in {new_term}")
 
+def change_selection():
+    print("""
+    Choose which paramter to change:
+    1. Interest Rate
+    2. Term
+    3. Amount Borrowed
+    """)
+
 action = {'2':pmt,'3':amort,'4':summary,'5':plot,'6':pay_faster,'7':pay_earlier}
 
 def main():
@@ -60,8 +69,20 @@ def main():
                 print('No loan initialized')
                 print('Please Initialize Loan By Choosing 1 from Menu')
                 sleep(1)
-        
+            except KeyError:
+                print('Please Initialize Loan By Choosing 1 from Menu')
         elif choice == '8':
+            change_selection()
+            change_choice = input("Enter a selection to change from the Menu:")
+            if change_choice == '1':
+                rate = float(input('Enter interest rate:'))
+            elif change_choice=='2':
+                term = int(input('Enter term:'))
+            elif change_choice=='3':
+                pv = float(input('Enter amount borrowed:'))
+            loan = Loan(rate, term, pv)
+
+        elif choice == '9':
             print('Bye!')
             sys.exit()
         
